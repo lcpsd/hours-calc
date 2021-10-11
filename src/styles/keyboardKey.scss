@@ -5,33 +5,74 @@
     flex: 1;
     border: 1px solid #616161;
 
+    font-size: 36px;
+
+    transition: font-size ease-in-out 0.1s;
+    
+    //disable text selection
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    &:active{
+        background: #2c2c2c;
+        font-size: 42px;
+    }
+
+    //especial buttons
     &.equal{
         background: #2200FF;
         border: none;
+
+        &:active{
+            background: #1e00e2;
+        }
     }
 
     &.addition{
         background: #42FFB0;
         border: none;
+
+        &:active{
+            background: #38dc97;
+        }
     }
 
     &.subtraction{
         background: #FF004D;
         border: none;
+
+        &:active{
+            background: #dd0042;
+        }
     }
 
     &.multiply{
         background: #00B2FF;
         border: none;
+
+        &:active{
+            background: #019cdf;
+        }
     }
 
     &.divider{
         background: #FFB800;
         border: none;
+
+        &:active{
+            background: #eba800;
+        }
     }
 
     &.AC{
         background: #303030;
         border: none;
+
+        &:active{
+            background: #181818;
+        }
     }
 }

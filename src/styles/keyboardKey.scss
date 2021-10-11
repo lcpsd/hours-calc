@@ -23,47 +23,81 @@
 
     //especial buttons
     &.equal{
-        background: #2200FF;
+
+        font-weight: bold;
+        font-size: 42px;
+        
+        color: #2c2c2c;
+        background: #5900ff;
         border: none;
 
         &:active{
-            background: #1e00e2;
+            background: #6900e2;
         }
     }
 
     &.addition{
+        
+        font-weight: bold;
+        font-size: 42px;
+        
+        color: #2c2c2c;
         background: #42FFB0;
         border: none;
 
         &:active{
             background: #38dc97;
+
+            font-size: 50px;
         }
     }
 
     &.subtraction{
+
+        font-weight: bold;
+        font-size: 50px;
+
+        color: #2c2c2c;
+
         background: #FF004D;
         border: none;
 
         &:active{
             background: #dd0042;
+
+            font-size: 60px;
         }
     }
 
     &.multiply{
+        font-weight: bold;
+        font-size: 42px;
+
+        color: #2c2c2c;
+
         background: #00B2FF;
         border: none;
 
         &:active{
             background: #019cdf;
+
+            font-size: 60px;
         }
     }
 
     &.divider{
+        font-weight: bold;
+        font-size: 42px;
+
+        color: #2c2c2c;
+
         background: #FFB800;
         border: none;
 
         &:active{
             background: #eba800;
+
+            font-size: 60px;
         }
     }
 

@@ -1,3 +1,5 @@
+import '../styles/historySection.scss'
+
 export function HistorySection() {
     
     return (

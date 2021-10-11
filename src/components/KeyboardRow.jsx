@@ -1,3 +1,5 @@
+import '../styles/keyboardRow.scss'
+
 export function KeyboardRow() {
     
     return (

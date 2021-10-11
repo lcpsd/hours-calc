@@ -1,3 +1,5 @@
+import '../styles/keyboardKey.scss'
+
 export function KeyboardKey() {
     
     return (

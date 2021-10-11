@@ -1,3 +1,5 @@
+import '../styles/screen.scss'
+
 export function Screen() {
     
     return (

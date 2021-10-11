@@ -1,3 +1,5 @@
+import '../styles/verticalDivisor.scss'
+
 export function VerticalDivisor() {
     
     return (

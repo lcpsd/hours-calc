@@ -1,14 +1,25 @@
-#home{
+.main-container{
+
+    max-width: 1120px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    height: 100vh;
-    background: #323232;
-    
-    main{
-        flex: 1;
-        align-self: stretch;
+
+    #home{
         display: flex;
         flex-direction: column;
+        align-items: center;
+        flex: 1;
+        
+        main{
+            height: 85vh;
+            align-self: stretch;
+            display: flex;
+            flex-direction: column;
+        }
+
+        footer{
+            flex: 1;
+        }
+
     }
 }

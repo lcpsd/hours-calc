@@ -1,4 +1,5 @@
 import '../styles/keyboardRow.scss'
+import { KeyboardKey } from './KeyboardKey'
 
 export function KeyboardRow({symbols}) {
     
@@ -8,15 +9,7 @@ export function KeyboardRow({symbols}) {
                 Object.entries(symbols)
                 .map(([key, value]) =>{
                     return(
-                        <div key={key} className={
-                            value === "=" ? "equal":
-                            value === "+" ? "addition":
-                            value === "-" ? "subtraction":
-                            value === "x" ? "multiply":
-                            value === "÷" ? "divider":
-                            value
-                            
-                        }>{value}</div>
+                        <KeyboardKey key={key} value={value}/>
                     )
                 })
             }

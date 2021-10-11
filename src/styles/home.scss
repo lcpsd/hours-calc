@@ -1,6 +1,12 @@
 #home{
     display: flex;
     flex-direction: column;
-    max-width: 600px;
+    align-items: center;
     height: 100vh;
+    background: #323232;
+    
+    main{
+        flex: 1;
+        align-self: stretch;
+    }
 }

@@ -1,3 +1,36 @@
 .keyboard-key{
+    color: #fff;
+    background: #3E3E3E;
 
+    border: 1px solid #616161;
+
+    &.equal{
+        background: #2200FF;
+        border: none;
+    }
+
+    &.addition{
+        background: #42FFB0;
+        border: none;
+    }
+
+    &.subtraction{
+        background: #FF004D;
+        border: none;
+    }
+
+    &.multiply{
+        background: #00B2FF;
+        border: none;
+    }
+
+    &.divider{
+        background: #FFB800;
+        border: none;
+    }
+
+    &.AC{
+        background: #303030;
+        border: none;
+    }
 }

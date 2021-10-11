@@ -1,10 +1,11 @@
+import arrow from '../public/arrow.png'
 import '../styles/scrollScreenButton.scss'
 
 export function ScrollScreenButton() {
     
     return (
-        <div className="scroll-screen-button">
-
-        </div>
+        <button className="scroll-screen-button">
+            <img src={arrow} alt="" />
+        </button>
     )
 }

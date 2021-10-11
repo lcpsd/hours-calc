@@ -1,7 +1,8 @@
 .keyboard-key{
     color: #fff;
     background: #3E3E3E;
-
+    
+    flex: 1;
     border: 1px solid #616161;
 
     &.equal{

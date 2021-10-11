@@ -1,7 +1,6 @@
 import { Navbar } from '../components/Navbar'
-import { Screen } from '../components/Screen'
-import {KeyboardSection} from '../components/KeyboardSection'
 import '../styles/home.scss'
+import { CalculatorSection } from './CalculatorSection'
 
 export function Home() {
     
@@ -9,8 +8,7 @@ export function Home() {
         <div id="home">
             <Navbar/>
             <main>
-                <Screen/>
-                <KeyboardSection/>
+                <CalculatorSection/>
             </main>
         </div>
     )

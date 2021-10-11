@@ -1,8 +1,13 @@
+import { Navbar } from '../components/Navbar'
+import '../styles/home.scss'
+
 export function Home() {
     
     return (
-        <main>
-            
-        </main>
+        <div id="home">
+            <Navbar/>
+            <main>
+            </main>
+        </div>
     )
 }

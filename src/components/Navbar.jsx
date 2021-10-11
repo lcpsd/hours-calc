@@ -1,8 +1,8 @@
 export function Navbar() {
     
     return (
-        <div>
+        <nav>
 
-        </div>
+        </nav>
     )
 }

@@ -1,7 +1,7 @@
 export function Screen() {
     
     return (
-        <div>
+        <div id="screen">
 
         </div>
     )

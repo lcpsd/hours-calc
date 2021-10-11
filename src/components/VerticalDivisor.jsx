@@ -1,7 +1,7 @@
 export function VerticalDivisor() {
     
     return (
-        <div>
+        <div className="vertical-divisor">
 
         </div>
     )

@@ -1,7 +1,7 @@
 export function KeyboardSection() {
     
     return (
-        <div>
+        <div id="keyboard-section">
 
         </div>
     )

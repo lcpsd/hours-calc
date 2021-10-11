@@ -1,7 +1,7 @@
 export function KeyboardKey() {
     
     return (
-        <div>
+        <div className="keyboard-key">
 
         </div>
     )

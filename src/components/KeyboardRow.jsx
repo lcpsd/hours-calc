@@ -1,7 +1,7 @@
 export function KeyboardRow() {
     
     return (
-        <div>
+        <div className="keyboard-row">
 
         </div>
     )

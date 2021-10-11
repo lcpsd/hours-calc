@@ -1,7 +1,7 @@
 export function ScrollScreenButton() {
     
     return (
-        <div>
+        <div className="scroll-screen-button">
 
         </div>
     )

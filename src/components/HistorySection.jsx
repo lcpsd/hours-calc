@@ -1,7 +1,7 @@
 export function HistorySection() {
     
     return (
-        <div>
+        <div id="history-section">
 
         </div>
     )

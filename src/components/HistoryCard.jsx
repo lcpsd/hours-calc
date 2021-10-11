@@ -1,7 +1,7 @@
 export function HistoryCard() {
     
     return (
-        <div>
+        <div id="history-card">
 
         </div>
     )

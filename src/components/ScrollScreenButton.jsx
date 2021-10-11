@@ -1,4 +1,4 @@
-export function GoDownButton() {
+export function ScrollScreenButton() {
     
     return (
         <div>

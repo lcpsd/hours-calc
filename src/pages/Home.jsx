@@ -2,7 +2,7 @@ import { Navbar } from '../components/Navbar'
 import { Screen } from '../components/Screen'
 import {KeyboardSection} from '../components/KeyboardSection'
 import '../styles/home.scss'
-import { ScrollScreenButton } from '../components/ScrollScreenButton'
+import { ShowHistoryButton } from '../components/ShowHistoryButton'
 import { HistorySection } from '../components/HistorySection'
 
 export function Home() {
@@ -14,11 +14,12 @@ export function Home() {
                 <main>
                     <Screen/>
                     <KeyboardSection/>
-                    <ScrollScreenButton/>
+                    <ShowHistoryButton/>
                 </main>
-                <footer>
+
+                <aside>
                     <HistorySection/>  
-                </footer>
+                </aside>
             </div>
         </div>
     )

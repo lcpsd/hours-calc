@@ -1,7 +1,7 @@
 import { Navbar } from '../components/Navbar'
 import '../styles/home.scss'
 import { CalculatorSection } from './CalculatorSection'
-import { ScrollScreenButton } from './ScrollScreenButton'
+import { ShowHistoryButton } from './ShowHistoryButton'
 
 export function Home() {
     
@@ -10,7 +10,7 @@ export function Home() {
             <Navbar/>
             <main>
                 <CalculatorSection/>
-                <ScrollScreenButton/>
+                <ShowHistoryButton/>
             </main>
         </div>
     )

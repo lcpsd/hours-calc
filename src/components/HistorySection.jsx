@@ -1,8 +1,12 @@
 import {HistoryCard} from './HistoryCard'
+import closeIcon from '../public/close.png'
 import '../styles/historySection.scss'
+import {useHistoryHook} from '../hooks/useHistoryHook'
 
 export function HistorySection() {
-    
+
+    const {isMenuVisible, setMenuVisibility} = useHistoryHook()
+
     const operations=[
         {
             id:1,
@@ -27,7 +31,11 @@ export function HistorySection() {
     ]
 
     return (
-        <div id="history-section">
+        <div id="history-section" className={isMenuVisible}>
+
+                <img id="close-icon" src={closeIcon} alt="" 
+                onClick={() => setMenuVisibility('hidded')}/>
+
             <h3>History</h3>
             {
                 operations.map(({id ,operation, result}) => {

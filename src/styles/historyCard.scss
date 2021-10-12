@@ -19,3 +19,9 @@
         color: #8746ff;
     }
 }
+
+@media(min-width: 769px){
+    .history-card{
+        border: 0;
+    }
+}

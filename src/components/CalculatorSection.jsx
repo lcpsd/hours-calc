@@ -1,13 +1,13 @@
 import { Screen } from '../components/Screen'
 import {KeyboardSection} from '../components/KeyboardSection'
-import '../styles/home.scss'
+import '../styles/calculatorSection.scss'
 
 export function CalculatorSection() {
     
     return (
-        <section id="calculator-section">
+        <div id="calculator-section">
             <Screen/>
             <KeyboardSection/>
-        </section>
+        </div>
     )
 }

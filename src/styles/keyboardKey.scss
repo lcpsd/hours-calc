@@ -110,3 +110,11 @@
         }
     }
 }
+
+@media(min-width: 769px){
+    .keyboard-key{
+        &.7{
+            background: red;
+        }
+    }
+}

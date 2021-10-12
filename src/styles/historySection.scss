@@ -9,7 +9,7 @@
     width: 100vw;
     height: 95vh;
     top:0;
-    left: -1000px;
+    left: -100vw;
     
     transition: left 0.2s ease-in-out;
 
@@ -35,5 +35,27 @@
         padding: 10px 0;
 
         border-bottom: 1px solid #616161;
+    }
+}
+
+@media(min-width: 769px){
+    #history-section{
+        background: initial;
+
+        position: inherit;
+
+        width: initial;
+        height: 100%;
+
+        padding: 20px 150px;
+
+
+        h3{
+            border:  0;
+        }
+
+        #close-icon{
+            display: none;
+        }
     }
 }

@@ -14,3 +14,9 @@
         height: 25px;
     }
 }
+
+@media(min-width: 769px){
+    .show-history-button{
+        display: none;
+    }    
+}

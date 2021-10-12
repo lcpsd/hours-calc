@@ -1,5 +1,4 @@
 #screen{
-    background: #323232;
     color: #fff;
 
     display: flex;
@@ -16,4 +15,14 @@
         font-weight: bold;
         font-size: 15vw;
     }
+}
+
+
+@media(min-width: 769px){
+    #screen{
+        p{
+            font-size: 64px;
+        }
+    }
+       
 }

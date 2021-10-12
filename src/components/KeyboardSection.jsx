@@ -8,6 +8,13 @@ export function KeyboardSection() {
         <div id="keyboard-section">
 
             <KeyboardRow symbols={{
+                1: "P1",
+                2: "P2",
+                3: "P3",
+                4: ":",
+            }}/>
+
+            <KeyboardRow symbols={{
                 1: "7",
                 2: "8",
                 3: "9",
@@ -32,7 +39,7 @@ export function KeyboardSection() {
                 1: "0",
                 2: "=",
                 3: "+",
-                4: "-"
+                4: "-",
             }}/>
         </div>
     )

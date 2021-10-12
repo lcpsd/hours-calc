@@ -65,7 +65,7 @@ export function HistorySection() {
 
                 <img id="close-icon" src={closeIcon} alt="" 
                 onClick={() => setMenuVisibility('hidded')}/>
-
+            
             <h3>History</h3>
             {
                 operations.map(({id ,operation, result}) => {

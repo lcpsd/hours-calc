@@ -6,13 +6,28 @@
     justify-content: center;
     flex: 1;
 
+    .text-container{
+        display: flex;
+
+        font-size: 64px;
+        
+        span#P1, span#P2, span#P3{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #fff;
+
+            text-align: center;
+
+            width: 70px;
+
+            font-size: 64px;
+        }
+    }
+
     padding: 10px 30px;
 
-    p{
-        word-break: break-all;
-        font-weight: bold;
-        font-size: 15vw;
-    }
 }
 
 

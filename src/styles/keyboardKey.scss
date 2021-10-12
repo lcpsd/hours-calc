@@ -32,6 +32,7 @@
         border: none;
 
         &:active{
+            font-size: 50px;
             background: #6900e2;
         }
     }
@@ -53,7 +54,7 @@
     }
 
     &.subtraction{
-
+        
         font-weight: bold;
         font-size: 50px;
 
@@ -113,8 +114,20 @@
 
 @media(min-width: 769px){
     .keyboard-key{
-        &.7{
-            background: red;
+        &.subtraction{
+            border-radius: 0 0 10px 0;
+        }
+
+        &.upper-left-corner{
+            border-radius: 10px 0 0 0;
+        }
+
+        &.lower-left-corner {
+            border-radius: 0 0 0 10px;
+        }
+
+        &.upper-right-corner{
+            border-radius: 0 10px 0 0;
         }
     }
 }

@@ -22,10 +22,15 @@
         padding: 10px 0px;
 
         p{
+            display: flex;
+            align-items: center;
+
             height: 200px;
+
             overflow-y: auto;
+            
             text-align: center;
-            font-size: 64px;
+            font-size: 50px;
         }
     }
        

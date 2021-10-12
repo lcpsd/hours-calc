@@ -1,8 +1,12 @@
 .show-history-button{
     height: 50px;
 
-    background: #313131;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     
+    background: #2b2b2b;
+
     border: none;
     border-bottom: 1px solid #616161;
 

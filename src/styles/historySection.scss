@@ -40,18 +40,22 @@
 
 @media(min-width: 769px){
     #history-section{
+
+        align-items: center;
+
         background: initial;
 
         position: inherit;
 
-        width: initial;
+        width: 200px;
         height: 100%;
 
         padding: 20px 150px;
 
 
         h3{
-            border:  0;
+            border: 0;
+            font-size: 20px;
         }
 
         #close-icon{

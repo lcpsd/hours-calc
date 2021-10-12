@@ -6,9 +6,7 @@
     justify-content: center;
     flex: 1;
 
-    padding: 20px 50px;
-
-    max-width: 100vw;
+    padding: 10px 30px;
 
     p{
         word-break: break-all;
@@ -20,7 +18,13 @@
 
 @media(min-width: 769px){
     #screen{
+
+        padding: 10px 0px;
+
         p{
+            height: 200px;
+            overflow-y: auto;
+            text-align: center;
             font-size: 64px;
         }
     }

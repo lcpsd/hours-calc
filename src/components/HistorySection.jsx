@@ -28,6 +28,36 @@ export function HistorySection() {
             operation:"00:01:00 * 10",
             result: "00:10:00"
         },
+        {
+            id:5,
+            operation:"00:01:00 * 10",
+            result: "00:10:00"
+        },
+        {
+            id:6,
+            operation:"00:01:00 * 10",
+            result: "00:10:00"
+        },
+        {
+            id:7,
+            operation:"00:01:00 * 10",
+            result: "00:10:00"
+        },
+        {
+            id:8,
+            operation:"00:01:00 * 10",
+            result: "00:10:00"
+        },
+        {
+            id:9,
+            operation:"00:01:00 * 10",
+            result: "00:10:00"
+        },
+        {
+            id:10,
+            operation:"00:01:00 * 10",
+            result: "00:10:00"
+        }
     ]
 
     return (

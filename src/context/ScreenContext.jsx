@@ -9,11 +9,13 @@ export function ScreenContextProvider(props){
     const [position2, setPosition2] = useState("00")
     const [position3, setPosition3] = useState("00")
 
-    const [currentOperation, setCurrentOperation] = useState("")
     const [lastOperation, setLastOperation] = useState("")
 
     const [positionCounter, setPositionCounter] = useState(1)
+
     const [operator, setOperator] = useState("")
+
+    const [operatorNumber, setOperatorNumber] = useState(Number)
 
     //logical of key inputs
     function digitsInput(keyValue){
@@ -27,6 +29,14 @@ export function ScreenContextProvider(props){
             let ten = position + keyValue
             setPosition(ten)
             setPositionCounter(positionCounter + 1)
+        }
+
+        function clearFields(){
+            setPosition1("00") 
+            setPosition2("00") 
+            setPosition3("00")
+            setOperator("")
+            setPositionCounter(1)
         }
 
         const allOperators = ["P1", "P2", "P3", "x", "÷", "/", "-", "+", "="]
@@ -59,6 +69,9 @@ export function ScreenContextProvider(props){
                     setDigitTwo(setPosition3, position3)
                     setPositionCounter(1)
                     break;
+                case 7:
+                    setOperatorNumber(keyValue)
+                    break;
                 default:
                     return
             }
@@ -68,15 +81,21 @@ export function ScreenContextProvider(props){
         //checks clear screen key
         if(keyValue === "AC"){
 
-            setPosition1("00") 
-            setPosition2("00") 
-            setPosition3("00")
-            setOperator("")
-            setPositionCounter(1)
+            clearFields()
         }
 
-        if(commumOperators.includes(keyValue)) setOperator(keyValue)
+        if(commumOperators.includes(keyValue)){
+            setOperator(keyValue)
+            setPositionCounter(7)
+        }
 
+        if(keyValue === "="){
+            setLastOperation(`${position1}:${position2}:${position3}+${operator}+${operatorNumber}`)
+            
+            clearFields()
+        }
+
+        //Check position selectors
         switch(keyValue){
             case "P1":
                 setPositionCounter(1)
@@ -110,11 +129,10 @@ export function ScreenContextProvider(props){
             positionCounter,
             operator,
 
-            setCurrentOperation,
-            currentOperation,
-
             setLastOperation,
-            setLastOperation
+            lastOperation,
+
+            operatorNumber
             }}>
             {props.children}
         </ScreenContext.Provider>

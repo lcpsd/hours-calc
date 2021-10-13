@@ -9,11 +9,13 @@ export function Screen() {
         position2, 
         position3,
         setPositionCounter,
+        lastOperation,
+        operatorNumber
     } = useScreen()
 
     return (
         <div id="screen">
-            <p id="last-operation">asas</p>
+            <p id="last-operation">{lastOperation}</p>
 
             <div className="text-container">
 
@@ -49,7 +51,14 @@ export function Screen() {
                     operator ?
                     <span className="operator">{operator}</span>
                     :
-                    <span></span>
+                    <></>
+                }
+
+                {
+                    operatorNumber ? 
+                    <span className="operatorNumber">{operatorNumber}</span>
+                    :
+                    <></>
                 }
 
             </div>

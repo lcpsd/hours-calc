@@ -6,7 +6,8 @@ export function KeyboardKey({value}) {
     const {digitsInput} = useScreen()
 
     return (
-        <div className={
+        <div 
+        className={
             value === "=" ? "equal keyboard-key":
             value === "+" ? "addition keyboard-key":
             value === "-" ? "subtraction keyboard-key":
@@ -16,8 +17,11 @@ export function KeyboardKey({value}) {
             value === "0" ? "lower-left-corner keyboard-key":
             value === ":" ? "keyboard-key upper-right-corner":
             value + " keyboard-key"
-        } key={toString(value)}
-        onClick={(event)=> digitsInput(value)}
-        >{value}</div>
+        } 
+
+        key={toString(value)}
+        onClick={()=> digitsInput(value)}>
+            {value}
+        </div>
     )
 }

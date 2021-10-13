@@ -10,13 +10,24 @@
         display: flex;
 
         font-size: 64px;
-        
-        span#P1, span#P2, span#P3{
+    
+        input{
+            pointer-events: none;
+            //disable text selection
+            -moz-user-select: none;
+            -khtml-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+
             display: flex;
             align-items: center;
             justify-content: center;
 
             color: #fff;
+            background: transparent;
+
+            border: 0;
 
             text-align: center;
 
@@ -37,7 +48,7 @@
         padding: 10px 0px;
         display: flex;
 
-        p{
+        .text-container{
             display: flex;
             align-items: center;
 

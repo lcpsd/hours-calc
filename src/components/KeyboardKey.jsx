@@ -1,7 +1,10 @@
+import { useScreen } from '../hooks/useScreen'
 import '../styles/keyboardKey.scss'
 
 export function KeyboardKey({value}) {
     
+    const {digitsInput} = useScreen()
+
     return (
         <div className={
             value === "=" ? "equal keyboard-key":
@@ -13,6 +16,8 @@ export function KeyboardKey({value}) {
             value === "0" ? "lower-left-corner keyboard-key":
             value === ":" ? "keyboard-key upper-right-corner":
             value + " keyboard-key"
-        } key={toString(value)}>{value}</div>
+        } key={toString(value)}
+        onClick={(event)=> digitsInput(value)}
+        >{value}</div>
     )
 }

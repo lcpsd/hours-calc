@@ -4,9 +4,13 @@ export const ScreenContext = createContext('')
 
 export function ScreenContextProvider(props){
 
+    //positions states
     const [position1, setPosition1] = useState("00")
     const [position2, setPosition2] = useState("00")
     const [position3, setPosition3] = useState("00")
+
+    const [currentOperation, setCurrentOperation] = useState("")
+    const [lastOperation, setLastOperation] = useState("")
 
     const [positionCounter, setPositionCounter] = useState(1)
     const [operator, setOperator] = useState("")
@@ -29,6 +33,7 @@ export function ScreenContextProvider(props){
 
         const commumOperators = ["x", "÷", "/", "-", "+", "="]
 
+        //checks value is a number
         if(!allOperators.includes(keyValue)){
             switch(positionCounter){
                 case 1:
@@ -60,11 +65,14 @@ export function ScreenContextProvider(props){
 
         }
 
+        //checks clear screen key
         if(keyValue === "AC"){
 
             setPosition1("00") 
             setPosition2("00") 
             setPosition3("00")
+            setOperator("")
+            setPositionCounter(1)
         }
 
         if(commumOperators.includes(keyValue)) setOperator(keyValue)
@@ -100,7 +108,13 @@ export function ScreenContextProvider(props){
             digitsInput,
             setPositionCounter,
             positionCounter,
-            operator
+            operator,
+
+            setCurrentOperation,
+            currentOperation,
+
+            setLastOperation,
+            setLastOperation
             }}>
             {props.children}
         </ScreenContext.Provider>

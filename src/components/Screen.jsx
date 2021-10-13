@@ -13,6 +13,8 @@ export function Screen() {
 
     return (
         <div id="screen">
+            <p id="last-operation">asas</p>
+
             <div className="text-container">
 
                 <div id="P1" className={
@@ -49,39 +51,6 @@ export function Screen() {
                     :
                     <span></span>
                 }
-
-
-                {/* 
-                
-                    1 - Criar lógica de multiplicação
-                        1 - Pegar o texto que está em cada div e concatenar em uma única string
-
-                        2 - separar hora, minuto e segundo
-
-                        3 - transformar todos em minutos
-
-                        4 - fazer a multiplicação
-
-                        5 - exibir resultado final
-                    
-                    3 - Criar lógica de soma
-                        1 - Pegar o texto que está em cada div e concatenar em uma única string
-
-                        2 - separar hora, minuto e segundo
-
-                        3 - transformar todos em minutos
-
-                        4 - somar todos
-
-                        5 - transformar todos em hora
-
-                        6 - armazenar em um estado
-
-                        7 - aguardar a segunda entrada, refazer processos, fazer o calculo
-
-                        6 - exibir resultado final
-
-                */}
 
             </div>
         </div>

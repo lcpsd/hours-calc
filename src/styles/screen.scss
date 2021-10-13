@@ -5,6 +5,15 @@
     align-items: center;
     justify-content: center;
     flex: 1;
+    flex-direction: column;
+    position: relative;
+
+    #last-operation{
+        position: absolute;
+        text-align: end;
+        width: 90%;
+        top: 30px;
+    }
 
     .positionActive{
         border: 1px solid #2200FF;

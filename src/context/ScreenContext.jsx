@@ -25,9 +25,9 @@ export function ScreenContextProvider(props){
             setPositionCounter(positionCounter + 1)
         }
 
-        const allOperators = ["P1", "P2", "P3", "x", "÷", "/", "-", "+"]
+        const allOperators = ["P1", "P2", "P3", "x", "÷", "/", "-", "+", "="]
 
-        const commumOperators = ["x", "÷", "/", "-", "+"]
+        const commumOperators = ["x", "÷", "/", "-", "+", "="]
 
         if(!allOperators.includes(keyValue)){
             switch(positionCounter){
@@ -52,12 +52,19 @@ export function ScreenContextProvider(props){
                     break;
                 case 6:
                     setDigitTwo(setPosition3, position3)
-
+                    setPositionCounter(1)
                     break;
                 default:
                     return
             }
 
+        }
+
+        if(keyValue === "AC"){
+
+            setPosition1("00") 
+            setPosition2("00") 
+            setPosition3("00")
         }
 
         if(commumOperators.includes(keyValue)) setOperator(keyValue)

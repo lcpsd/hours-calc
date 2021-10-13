@@ -24,6 +24,7 @@
 
     //especial buttons
     &.equal{
+        flex: 2;
 
         font-weight: bold;
         font-size: 42px;
@@ -115,7 +116,7 @@
 
 @media(min-width: 769px){
     .keyboard-key{
-        &.subtraction{
+        &.addition{
             border-radius: 0 0 10px 0;
         }
 

@@ -29,6 +29,12 @@
             display: flex;
             justify-content: center;
             padding: 5px;
+
+            transition: font-size 0.2s ease-in-out;
+
+            &:active{
+                font-size: 75px;
+            }
         }
     }
 

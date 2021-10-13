@@ -11,7 +11,7 @@ export function KeyboardSection() {
                 1: "P1",
                 2: "P2",
                 3: "P3",
-                4: ":",
+                4: " "
             }}/>
 
             <KeyboardRow symbols={{

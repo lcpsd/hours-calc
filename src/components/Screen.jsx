@@ -3,21 +3,27 @@ import '../styles/screen.scss'
 
 export function Screen() {
     
-    const {position1, position2, position3} = useScreen()
+    const {positionCounter, position1, position2, position3} = useScreen()
 
     return (
         <div id="screen">
             <div className="text-container">
 
-                <div id="P1">{position1}</div>
+                <div id="P1" className={
+                    positionCounter >= 1 && positionCounter <= 2 ? 
+                    "positionActive" : ""}>{position1}</div>
 
                 <span className="hour-divisor">:</span>
 
-                <div id="P2">{position2}</div>
+                <div id="P2"  className={
+                    positionCounter >= 3 && positionCounter <= 4 ? 
+                    "positionActive" : ""}>{position2}</div>
 
                 <span className="hour-divisor">:</span>
 
-                <div id="P3">{position3}</div>
+                <div id="P3" className={
+                    positionCounter >= 5 && positionCounter <= 6 ? 
+                    "positionActive" : ""}>{position3}</div>
 
                 {/* 
                     1 - Exigir operador após a posição 3

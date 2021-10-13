@@ -8,9 +8,9 @@ export function ScreenContextProvider(props){
     const [position2, setPosition2] = useState("00")
     const [position3, setPosition3] = useState("00")
 
-    const [currentPosition, setCurrentPosition] = useState("P1")
     const [positionCounter, setPositionCounter] = useState(1)
 
+    //logical of key inputs
     function digitsInput(keyValue){
 
         function setDigitOne(setPosition){
@@ -24,7 +24,9 @@ export function ScreenContextProvider(props){
             setPositionCounter(positionCounter + 1)
         }
 
-        if(typeof(parseInt(keyValue)) == 'number'){
+        const especialOperators = ["P1", "P2", "P3", "x", "÷", "/", "-"]
+
+        if(!especialOperators.includes(keyValue)){
             switch(positionCounter){
                 case 1:
                     setDigitOne(setPosition1)
@@ -51,8 +53,22 @@ export function ScreenContextProvider(props){
                     break;
                 default:
                     return
-            }   
+            }
 
+        }
+
+        switch(keyValue){
+            case "P1":
+                setPositionCounter(1)
+                break;
+            case "P2":
+                setPositionCounter(3)
+                break;
+            case "P3":
+                setPositionCounter(5)
+                break;
+            default:
+                return
         }
 
     }
@@ -68,9 +84,9 @@ export function ScreenContextProvider(props){
             position3,
             setPosition3,
 
-            digitsInput, 
-            currentPosition, 
-            setCurrentPosition}}>
+            digitsInput,
+            positionCounter
+            }}>
             {props.children}
         </ScreenContext.Provider>
     )

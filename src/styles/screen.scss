@@ -6,12 +6,17 @@
     justify-content: center;
     flex: 1;
 
+    .positionActive{
+        border: 1px solid #2200FF;
+        border-radius: 10px;
+    }
+
     .text-container{
         display: flex;
 
         font-size: 64px;
     
-        input{
+        div{
             pointer-events: none;
             //disable text selection
             -moz-user-select: none;
@@ -20,20 +25,11 @@
             -ms-user-select: none;
             user-select: none;
 
+            width: 80px;
+            
             display: flex;
-            align-items: center;
             justify-content: center;
-
-            color: #fff;
-            background: transparent;
-
-            border: 0;
-
-            text-align: center;
-
-            width: 70px;
-
-            font-size: 64px;
+            padding: 5px;
         }
     }
 

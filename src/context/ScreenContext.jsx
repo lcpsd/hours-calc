@@ -20,6 +20,7 @@ export function ScreenContextProvider(props){
     //logical of key inputs
     function digitsInput(keyValue){
 
+        //functions
         function setDigitOne(setPosition){
             setPosition(keyValue)
             setPositionCounter(positionCounter + 1)
@@ -37,12 +38,33 @@ export function ScreenContextProvider(props){
             setPosition3("00")
             setOperator("")
             setPositionCounter(1)
+            setOperatorNumber()
         }
 
+        function toHHMMSS(secondsToConvert) {
+
+            var sec_num = parseInt(secondsToConvert, 10)
+            var hours   = Math.floor(sec_num / 3600)
+            var minutes = Math.floor((sec_num - (hours * 3600)) / 60)
+            var seconds = sec_num - (hours * 3600) - (minutes * 60)
+        
+            if (hours   < 10) hours   = "0"+hours
+            if (minutes < 10) minutes = "0"+minutes
+            if (seconds < 10) seconds = "0"+seconds
+
+            return [hours, minutes, seconds]
+        }
+
+        function hoursFormatToSeconds(hours, minutes, seconds){
+            return (Number(hours) * 3600 ) + (Number(minutes)*60) + (Number(seconds))
+        }
+
+        //declarations
         const allOperators = ["P1", "P2", "P3", "x", "÷", "/", "-", "+", "="]
 
-        const commumOperators = ["x", "÷", "/", "-", "+", "="]
+        const commumOperators = ["x", "÷", "/", "-", "+"]
 
+        //conditionals
         //checks value is a number
         if(!allOperators.includes(keyValue)){
             switch(positionCounter){
@@ -80,19 +102,79 @@ export function ScreenContextProvider(props){
 
         //checks clear screen key
         if(keyValue === "AC"){
-
+            setLastOperation("")
             clearFields()
         }
 
+        //checks commum math operators
         if(commumOperators.includes(keyValue)){
-            setOperator(keyValue)
-            setPositionCounter(7)
+            
+            //sum
+            if(keyValue === '+' && (position1 || position2 || position3) !== "00" && lastOperation === ''){
+                setLastOperation(`${position1}:${position2}:${position3}${operator}${operatorNumber}`)
+
+                setPosition1("00") 
+                setPosition2("00") 
+                setPosition3("00")
+            }
+
+            //if sum started
+            if(keyValue === '+' && (position1 || position2 || position3) !== "00" && lastOperation !== ""){
+
+                function lastOperationToSeconds(){
+                        let splitedLastOperation = lastOperation.split(":")
+                        splitedLastOperation[2] = splitedLastOperation[2].split('+')[0]
+
+                        return hoursFormatToSeconds(
+                            splitedLastOperation[0],
+                            splitedLastOperation[1],
+                            splitedLastOperation[2])
+                    }
+                
+                const lastOperationInSeconds = lastOperationToSeconds()
+                
+                let resultFieldsToSeconds = hoursFormatToSeconds(position1, position2, position3)
+
+                const finalSeconds = lastOperationInSeconds + resultFieldsToSeconds
+
+                let finalHour = toHHMMSS(finalSeconds)
+
+                setPosition1(finalHour[0])
+                setPosition2(finalHour[1])
+                setPosition3(finalHour[2])
+
+                setLastOperation("")
+                setPositionCounter(1)
+
+                return
+            }
+
         }
 
-        if(keyValue === "="){
-            setLastOperation(`${position1}:${position2}:${position3}+${operator}+${operatorNumber}`)
+        //checks equals about equals, multiply and divider
+        if(keyValue === "=" && (operator === "x" || operator === "÷")){
             
-            clearFields()
+            //convert fields to seconds
+            let resultFieldsToSeconds = hoursFormatToSeconds(position1, position2, position3)
+
+            /* eslint-disable */
+            operator === "x" ? 
+            resultFieldsToSeconds *= Number(operatorNumber)
+            :operator === "÷" ?resultFieldsToSeconds = resultFieldsToSeconds / Number(operatorNumber) 
+            : null
+            
+            setLastOperation(`${position1}:${position2}:${position3}${operator}${operatorNumber}`)
+
+            let finalHour = toHHMMSS(resultFieldsToSeconds)
+
+            setPosition1(finalHour[0])
+            setPosition1(finalHour[1])
+            setPosition1(finalHour[2])
+
+            setOperator("")
+            setPositionCounter(1)
+            setOperatorNumber()
+            
         }
 
         //Check position selectors

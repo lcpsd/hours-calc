@@ -166,7 +166,7 @@ export function ScreenContextProvider(props) {
 
             //sum
             //checks if it's first sum
-            if (keyValue === "+" && [position1, position2, position3] !== "00" && !lastOperation && !operatorNumber) {
+            if (keyValue === "+" && ((position1 || position2 || position3) !== "00") && !lastOperation && !operatorNumber) {
                 setLastOperation(`${position1}:${position2}:${position3}${keyValue}`)
                 clearFields('hour')
                 setPositionCounter(1)
@@ -176,7 +176,7 @@ export function ScreenContextProvider(props) {
             }
 
             //show result or sum with next value
-            if ((keyValue === "+" || "=") && (position1 || position2 || position3 !== "00") && lastOperation && !operatorNumber && lastKey === "+") {
+            if ((keyValue === "+" || "=") && ((position1 || position2 || position3) !== "00") && lastOperation && !operatorNumber && lastKey === "+") {
 
                 let result
 
@@ -198,7 +198,7 @@ export function ScreenContextProvider(props) {
 
             //multiply
             //operation query
-            if (keyValue === "x" && [position1, position2, position3] !== "00" && !lastOperation) {
+            if (keyValue === "x" && ((position1 || position2 || position3) !== "00") && !lastOperation) {
                 setPositionCounter(7)
                 setOperator("x")
                 setLastKey(keyValue)
@@ -206,7 +206,7 @@ export function ScreenContextProvider(props) {
             }
 
             //result
-            if (keyValue === "=" && (position1 || position2 || position3 !== "00") && operator === "x" && operatorNumber) {
+            if (keyValue === "=" && ((position1 || position2 || position3) !== "00") && operator === "x" && operatorNumber) {
                 const result = secondsToHHMMSS(hoursFormatToSeconds(position1, position2, position3) * operatorNumber)
 
                 setPosition1(result[0])
@@ -219,7 +219,7 @@ export function ScreenContextProvider(props) {
             }
 
             //if sum or subtraction
-            if ((keyValue === ("+" || "-")) && (position1 || position2 || position3 !== "00") && (operator === "x") && operatorNumber) {
+            if ((keyValue === ("+" || "-")) && ((position1 || position2 || position3) !== "00") && (operator === "x") && operatorNumber) {
                 const result = secondsToHHMMSS(hoursFormatToSeconds(position1, position2, position3) * operatorNumber)
 
                 setLastOperation(`${result[0]}:${result[1]}:${result[2]}`)
@@ -231,7 +231,7 @@ export function ScreenContextProvider(props) {
 
             //divider
             //operation query
-            if (keyValue === "÷" && [position1, position2, position3] !== "00" && !lastOperation) {
+            if (keyValue === "÷" && ((position1 || position2 || position3) !== "00") && !lastOperation) {
                 setPositionCounter(7)
                 setOperator("÷")
                 setLastKey(keyValue)
@@ -239,7 +239,7 @@ export function ScreenContextProvider(props) {
             }
 
             //result
-            if (keyValue === "=" && (position1 || position2 || position3 !== "00") && operator === "÷" && operatorNumber) {
+            if (keyValue === "=" && ((position1 || position2 || position3) !== "00") && operator === "÷" && operatorNumber) {
                 const result = secondsToHHMMSS(hoursFormatToSeconds(position1, position2, position3) / operatorNumber)
 
                 setPosition1(result[0])
@@ -253,7 +253,7 @@ export function ScreenContextProvider(props) {
             }
 
             //if sum or subtraction
-            if ((keyValue === ("+" || "-")) && (position1 || position2 || position3 !== "00") && operator === "÷" && operatorNumber) {
+            if ((keyValue === ("+" || "-")) && ((position1 || position2 || position3) !== "00") && operator === "÷" && operatorNumber) {
                 const result = secondsToHHMMSS(hoursFormatToSeconds(position1, position2, position3) / operatorNumber)
 
                 setLastOperation(`${result[0]}:${result[1]}:${result[2]}`)
@@ -265,7 +265,7 @@ export function ScreenContextProvider(props) {
 
             //subtraction
             //checks if it's first subtraction
-            if (keyValue === "-" && [position1, position2, position3] !== "00" && !lastOperation && !operatorNumber) {
+            if (keyValue === "-" && ((position1 || position2 || position3) !== "00") && !lastOperation && !operatorNumber) {
                 
                 setLastKey(keyValue)
 
@@ -277,7 +277,7 @@ export function ScreenContextProvider(props) {
             }
 
             //show result or subtract from next value
-            if ((keyValue === "-" || "=") && (position1 || position2 || position3 !== "00") && lastOperation && !operatorNumber && lastKey === "-") {
+            if ((keyValue === "-" || "=") && ((position1 || position2 || position3) !== "00") && lastOperation && !operatorNumber && lastKey === "-") {
 
                 let result
 
@@ -295,7 +295,6 @@ export function ScreenContextProvider(props) {
                 return
             }
             
-
         }
     }
 

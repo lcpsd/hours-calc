@@ -99,7 +99,6 @@ export function ScreenContextProvider(props){
         //conditionals
         //checks value is a number
         if(!allOperators.includes(keyValue)){
-
             //checks if is a result in screen to sum
             if((position1 || position2 || position3) !== "00" && lastKey === "+" && positionCounter === 1){
                 setLastOperation(`${position1}:${position2}:${position3}${operator}`)
@@ -121,13 +120,13 @@ export function ScreenContextProvider(props){
                     break;
 
                 case 4:
-                    setDigitTwo(setPosition2, position2)
+                    if(parseInt(position2) <= 5) setDigitTwo(setPosition2, position2)
                     break;
                 case 5:
                     setDigitOne(setPosition3)
                     break;
                 case 6:
-                    setDigitTwo(setPosition3, position3)
+                    if(parseInt(position3) <= 5) setDigitTwo(setPosition3, position3)
                     setPositionCounter(1)
                     break;
                 case 7:
@@ -226,6 +225,38 @@ export function ScreenContextProvider(props){
                 clearFields('operator')
                 setPositionCounter(1)
             }
+
+            //divider
+            //operation query
+            if(keyValue === "÷" && [position1, position2, position3] !== "00" && !lastOperation){
+                setPositionCounter(7)
+                setOperator("÷")
+                return
+            }
+
+            //result
+            if(keyValue === "=" && (position1 || position2 || position3 !== "00") && operator === "÷" && operatorNumber){
+                const result = secondsToHHMMSS(hoursFormatToSeconds(position1, position2, position3) / operatorNumber)
+
+                setPosition1(result[0])
+                setPosition2(result[1])
+                setPosition3(result[2])
+
+                clearFields('operator')
+            
+            }
+
+            //if sum or subtraction
+            if((keyValue === ("+" || "-")) && (position1 || position2 || position3 !== "00") && (operator === "÷") && operatorNumber){
+                const result = secondsToHHMMSS(hoursFormatToSeconds(position1, position2, position3) / operatorNumber)
+
+                setLastOperation(`${result[0]}:${result[1]}:${result[2]}`)
+                clearFields('hour')
+                clearFields('operator')
+                setPositionCounter(1)
+            }
+
+            
         }
     }
 

@@ -168,8 +168,9 @@ export function ScreenContextProvider(props){
 
             setLastKey(keyValue)
 
+            //sum
             //checks if it's first sum
-            if(keyValue === "+" && [position1, position2, position3] !== "00" && !lastOperation){
+            if(keyValue === "+" && [position1, position2, position3] !== "00" && !lastOperation && !operatorNumber){
                 setLastOperation(`${position1}:${position2}:${position3}${keyValue}`)
                 clearFields('hour')
                 setPositionCounter(1)
@@ -178,7 +179,7 @@ export function ScreenContextProvider(props){
             }
 
             //show result or sum with next value
-            if((keyValue === "+" || "=") && (position1 || position2 || position3 !== "00") && lastOperation){
+            if((keyValue === "+" || "=") && (position1 || position2 || position3 !== "00") && lastOperation && !operatorNumber){
 
                 let result
 
@@ -190,10 +191,6 @@ export function ScreenContextProvider(props){
                     setPosition3(result[2])
                 }
 
-                if(keyValue === "-"){
-                    result = secondsToHHMMSS(lastOperationToSeconds() - hoursFormatToSeconds(position1, position2, position3))
-                }
-
                 setLastOperation("")
 
                 setPositionCounter(1)
@@ -201,12 +198,14 @@ export function ScreenContextProvider(props){
             }
 
             //multiply
+            //operation query
             if(keyValue === "x" && [position1, position2, position3] !== "00" && !lastOperation){
                 setPositionCounter(7)
                 setOperator("x")
                 return
             }
 
+            //result
             if(keyValue === "=" && (position1 || position2 || position3 !== "00") && operator === "x" && operatorNumber){
                 const result = secondsToHHMMSS(hoursFormatToSeconds(position1, position2, position3) * operatorNumber)
 
@@ -217,9 +216,17 @@ export function ScreenContextProvider(props){
                 clearFields('operator')
             
             }
+
+            //if sum or subtraction
+            if((keyValue === ("+" || "-")) && (position1 || position2 || position3 !== "00") && (operator === "x") && operatorNumber){
+                const result = secondsToHHMMSS(hoursFormatToSeconds(position1, position2, position3) * operatorNumber)
+
+                setLastOperation(`${result[0]}:${result[1]}:${result[2]}`)
+                clearFields('hour')
+                clearFields('operator')
+                setPositionCounter(1)
+            }
         }
-
-
     }
 
     return(

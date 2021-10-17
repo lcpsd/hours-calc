@@ -2,63 +2,37 @@ import {HistoryCard} from './HistoryCard'
 import closeIcon from '../public/close.png'
 import '../styles/historySection.scss'
 import {useHistoryHook} from '../hooks/useHistoryHook'
+import { useEffect, useState } from 'react'
 
 export function HistorySection() {
 
     const {isMenuVisible, setMenuVisibility} = useHistoryHook()
 
-    const operations=[
-        {
-            id:1,
-            operation:"00:01:00 * 10",
-            result: "00:10:00"
-        },
-        {
-            id:2,
-            operation:"00:01:00 * 10",
-            result: "00:10:00"
-        },
-        {
-            id:3,
-            operation:"00:01:00 * 10",
-            result: "00:10:00"
-        },
-        {
-            id:4,
-            operation:"00:01:00 * 10",
-            result: "00:10:00"
-        },
-        {
-            id:5,
-            operation:"00:01:00 * 10",
-            result: "00:10:00"
-        },
-        {
-            id:6,
-            operation:"00:01:00 * 10",
-            result: "00:10:00"
-        },
-        {
-            id:7,
-            operation:"00:01:00 * 10",
-            result: "00:10:00"
-        },
-        {
-            id:8,
-            operation:"00:01:00 * 10",
-            result: "00:10:00"
-        },
-        {
-            id:9,
-            operation:"00:01:00 * 10",
-            result: "00:10:00"
-        },
-        {
-            id:10,
-            operation:"00:01:00 * 10",
-            result: "00:10:00"
+    const [operations, setOperations] = useState([])
+
+    let localStorageData = Object.entries(localStorage).filter(([key, value]) => key.includes("@hours-calc/"))
+
+    async function getLocalStorage(){
+        return await Promise.resolve(
+            Object.entries(localStorage).filter(([key, value]) => key.includes("@hours-calc/"))
+        )
+    }
+
+    useEffect(() => {
+        async function fetchHistoryData(){
+
+            let tempArray = await getLocalStorage()
+    
+            tempArray.sort((itemA, itemB) => {
+                return (parseInt(itemA[0].split('@hours-calc/')[1]) - parseInt(itemB[0].split('@hours-calc/')[1]))
+            })
+
+            setOperations(tempArray)
         }
-    ]
+
+        fetchHistoryData()
+
+    },[localStorageData])
 
     return (
         <div id="history-section" className={isMenuVisible}>
@@ -68,9 +42,10 @@ export function HistorySection() {
             
             <h3>History</h3>
             {
-                operations.map(({id ,operation, result}) => {
-                    return <HistoryCard key={id} operation={operation} 
-                    result={result}
+                operations.map((operation) => {
+                    return <HistoryCard key={operation[0]} 
+                    operation={operation[1].split(",")[0] + operation[1].split(",")[1]} 
+                    result={operation[1].split(",")[2]}
                     />
                 })
             }

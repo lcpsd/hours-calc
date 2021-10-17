@@ -127,10 +127,6 @@ export function ScreenContextProvider(props) {
 
                 tempArray.forEach(item => localStorage.setItem(item[0], item[1]))
 
-                console.log(
-                    Object.entries(localStorage).filter(([key, value]) => key.includes("@hours-calc/"))
-                )
-
                 return
             }
 
@@ -389,7 +385,7 @@ export function ScreenContextProvider(props) {
             setLastOperation,
             lastOperation,
 
-            operatorNumber
+            operatorNumber,
         }}>
             {props.children}
         </ScreenContext.Provider>

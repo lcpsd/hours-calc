@@ -89,6 +89,55 @@ export function ScreenContextProvider(props) {
                 splitedLastOperation[2])
         }
 
+        async function clearLocalStorage(){
+            await Promise.resolve(Object.entries(localStorage).map(([key, value]) => key.includes("@hours-calc/") ? localStorage.removeItem(key) : null
+            ))
+        }
+
+        async function localStorageLength(){
+            const promiseResult = await Promise.resolve(
+                Object.entries(localStorage).filter(([key, value]) => key.includes("@hours-calc/"))
+            )
+
+            return promiseResult.length
+        }
+
+        async function getLocalStorage(){
+            const promiseResult = await Promise.resolve(
+                Object.entries(localStorage).filter(([key, value]) => key.includes("@hours-calc/"))
+            )
+
+            return promiseResult
+        }
+
+        async function toLocalStorage(lastOperation, currentOperation, result){
+            
+            if(localStorageLength === 10){
+                let tempArray = await getLocalStorage()
+
+                tempArray.pop()
+
+                tempArray.map(item => item[0] = "@hours-calc/" + parseInt(item[0].split('@hours-calc/')[1]) + 1)
+
+                tempArray.unshift([lastOperation, currentOperation,result])
+
+                clearLocalStorage()
+                
+                tempArray.map(item => localStorage.setItem(`@hours-calc/${1}`, item))
+
+                console.log(localStorage)
+
+                return
+            }
+
+            const id = localStorageLength + 1
+
+            localStorage.setItem(`@hours-calc/${id}`, [lastOperation, currentOperation, result])
+
+            console.log(localStorage)
+
+        }
+
         //declarations
         const allOperators = ["P1", "P2", "P3", "x", "÷", "/", "-", "+", "=", "AC"]
 
@@ -99,6 +148,7 @@ export function ScreenContextProvider(props) {
         //conditionals
         //checks value is a number
         if (!allOperators.includes(keyValue) && keyValue >= 0) {
+
             //checks if is a result in screen to sum
             if ((position1 || position2 || position3) !== "00" && lastKey === "+" && positionCounter === 1) {
                 setLastOperation(`${position1}:${position2}:${position3}${operator}`)
@@ -159,7 +209,7 @@ export function ScreenContextProvider(props) {
             clearFields('all')
         }
 
-        //checks commum math operators
+        //checks and process commum math operators
         if (commumOperators.includes(keyValue)) {
 
             setLastKey(keyValue)
@@ -178,15 +228,17 @@ export function ScreenContextProvider(props) {
             //show result or sum with next value
             if ((keyValue === "+" || "=") && ((position1 || position2 || position3) !== "00") && lastOperation && !operatorNumber && lastKey === "+") {
 
+                const secondQuery = `${position1}:${position2}:${position3}${keyValue}`
+
                 let result
 
-                if (keyValue === "+" || keyValue === "=") {
-                    result = secondsToHHMMSS(lastOperationToSeconds("+") + hoursFormatToSeconds(position1, position2, position3))
+                result = secondsToHHMMSS(lastOperationToSeconds("+") + hoursFormatToSeconds(position1, position2, position3))
 
-                    setPosition1(result[0])
-                    setPosition2(result[1])
-                    setPosition3(result[2])
-                }
+                setPosition1(result[0])
+                setPosition2(result[1])
+                setPosition3(result[2])
+                
+                toLocalStorage(lastOperation, secondQuery, `${result[0]}:${result[1]}:${result[2]}`)
 
                 setLastOperation("")
 
@@ -207,6 +259,7 @@ export function ScreenContextProvider(props) {
 
             //result
             if (keyValue === "=" && ((position1 || position2 || position3) !== "00") && operator === "x" && operatorNumber) {
+                
                 const result = secondsToHHMMSS(hoursFormatToSeconds(position1, position2, position3) * operatorNumber)
 
                 setPosition1(result[0])

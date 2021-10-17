@@ -1,5 +1,4 @@
 import {KeyboardRow} from '../components/KeyboardRow'
-
 import '../styles/keyboardSection.scss'
 
 export function KeyboardSection() {

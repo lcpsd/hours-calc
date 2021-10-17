@@ -18,7 +18,7 @@ export function KeyboardKey({value}) {
             value === ":" ? "keyboard-key upper-right-corner":
             value + " keyboard-key"
         } 
-
+        
         key={toString(value)}
         onClick={()=> digitsInput(value)}>
             {value}

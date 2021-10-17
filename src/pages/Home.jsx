@@ -6,7 +6,6 @@ import { CalculatorSection } from '../components/CalculatorSection'
 import { ScreenContextProvider } from '../context/ScreenContext'
 import { KeyboardContextProvider } from '../context/KeyboardContext'
 
-
 export function Home() {
     
     return (

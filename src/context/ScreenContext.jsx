@@ -22,6 +22,8 @@ export function ScreenContextProvider(props) {
     //logical of key inputs
     function digitsInput(keyValue) {
 
+        //clearLocalStorage()
+
         //functions
         function setDigitOne(setPosition) {
             setPosition(keyValue)
@@ -89,52 +91,56 @@ export function ScreenContextProvider(props) {
                 splitedLastOperation[2])
         }
 
+        //local storage functions
         async function clearLocalStorage(){
             await Promise.resolve(Object.entries(localStorage).map(([key, value]) => key.includes("@hours-calc/") ? localStorage.removeItem(key) : null
             ))
         }
 
         async function localStorageLength(){
-            const promiseResult = await Promise.resolve(
-                Object.entries(localStorage).filter(([key, value]) => key.includes("@hours-calc/"))
-            )
-
-            return promiseResult.length
+            
+            return Object.entries(localStorage).filter(([key, value]) => key.includes("@hours-calc/")).length
         }
 
         async function getLocalStorage(){
-            const promiseResult = await Promise.resolve(
+            return await Promise.resolve(
                 Object.entries(localStorage).filter(([key, value]) => key.includes("@hours-calc/"))
             )
-
-            return promiseResult
         }
 
         async function toLocalStorage(lastOperation, currentOperation, result){
             
-            if(localStorageLength === 10){
+            if(await localStorageLength() === 10){
                 let tempArray = await getLocalStorage()
 
+                tempArray.sort((itemA, itemB) => {
+                    return (parseInt(itemA[0].split('@hours-calc/')[1]) - parseInt(itemB[0].split('@hours-calc/')[1]))
+                })
+
                 tempArray.pop()
-
-                tempArray.map(item => item[0] = "@hours-calc/" + parseInt(item[0].split('@hours-calc/')[1]) + 1)
-
-                tempArray.unshift([lastOperation, currentOperation,result])
-
-                clearLocalStorage()
                 
-                tempArray.map(item => localStorage.setItem(`@hours-calc/${1}`, item))
+                tempArray.map(item => item[0] = "@hours-calc/" + (parseInt(item[0].split('@hours-calc/')[1]) + 1))
 
-                console.log(localStorage)
+                tempArray.unshift([`@hours-calc/${1}`, `${lastOperation},${currentOperation},${result}`])
+                
+                clearLocalStorage()
+
+                tempArray.forEach(item => localStorage.setItem(item[0], item[1]))
+
+                console.log(
+                    Object.entries(localStorage).filter(([key, value]) => key.includes("@hours-calc/"))
+                )
 
                 return
             }
 
-            const id = localStorageLength + 1
+            //OK
+            let id
 
-            localStorage.setItem(`@hours-calc/${id}`, [lastOperation, currentOperation, result])
+            if(await localStorageLength() === 0) id = 1
+            if(await localStorageLength() !== 0) id = await localStorageLength() + 1
 
-            console.log(localStorage)
+            localStorage.setItem(`@hours-calc/${id}`, `${lastOperation},${currentOperation},${result}`)
 
         }
 
@@ -260,11 +266,15 @@ export function ScreenContextProvider(props) {
             //result
             if (keyValue === "=" && ((position1 || position2 || position3) !== "00") && operator === "x" && operatorNumber) {
                 
+                const secondQuery = `${position1}:${position2}:${position3}${keyValue}`
+
                 const result = secondsToHHMMSS(hoursFormatToSeconds(position1, position2, position3) * operatorNumber)
 
                 setPosition1(result[0])
                 setPosition2(result[1])
                 setPosition3(result[2])
+
+                toLocalStorage(lastOperation, secondQuery, `${result[0]}:${result[1]}:${result[2]}`)
 
                 clearFields('operator')
                 setLastKey(keyValue)
@@ -293,11 +303,16 @@ export function ScreenContextProvider(props) {
 
             //result
             if (keyValue === "=" && ((position1 || position2 || position3) !== "00") && operator === "÷" && operatorNumber) {
+
+                const secondQuery = `${position1}:${position2}:${position3}${keyValue}`
+
                 const result = secondsToHHMMSS(hoursFormatToSeconds(position1, position2, position3) / operatorNumber)
 
                 setPosition1(result[0])
                 setPosition2(result[1])
                 setPosition3(result[2])
+
+                toLocalStorage(lastOperation, secondQuery, `${result[0]}:${result[1]}:${result[2]}`)
 
                 clearFields('operator')
 
@@ -332,6 +347,8 @@ export function ScreenContextProvider(props) {
             //show result or subtract from next value
             if ((keyValue === "-" || "=") && ((position1 || position2 || position3) !== "00") && lastOperation && !operatorNumber && lastKey === "-") {
 
+                const secondQuery = `${position1}:${position2}:${position3}${keyValue}`
+
                 let result
 
                 result = secondsToHHMMSS(lastOperationToSeconds("-") - hoursFormatToSeconds(position1, position2, position3))
@@ -339,6 +356,8 @@ export function ScreenContextProvider(props) {
                 setPosition1(result[0])
                 setPosition2(result[1])
                 setPosition3(result[2])
+
+                toLocalStorage(lastOperation, secondQuery, `${result[0]}:${result[1]}:${result[2]}`)
 
                 setLastOperation("")
 

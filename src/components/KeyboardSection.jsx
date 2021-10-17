@@ -1,8 +1,25 @@
+//import { useEffect, useState } from 'react'
 import {KeyboardRow} from '../components/KeyboardRow'
+//import { useScreen } from '../hooks/useScreen'
 import '../styles/keyboardSection.scss'
 
 export function KeyboardSection() {
     
+    // const [hasKeyDown, setHasKeyDown] = useState(false)
+
+    // const {digitsInput} = useScreen()
+
+    // useEffect(() => {
+
+    //     if(!hasKeyDown){
+    //         setHasKeyDown(true)
+
+    //         window.addEventListener('keydown', event => {
+    //             digitsInput(event.key)
+    //         })
+    //     }
+    // }, [hasKeyDown, digitsInput])
+
     return (
         <div id="keyboard-section">
 

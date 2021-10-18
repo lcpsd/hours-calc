@@ -1,0 +1,14 @@
+#calculator-section{
+    height: 100%;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-self: stretch
+    
+}
+
+@media(min-width: 769px){
+    #calculator-section{
+        max-width: 400px;
+    }
+}

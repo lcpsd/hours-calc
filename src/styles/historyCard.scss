@@ -1,0 +1,40 @@
+.history-card{
+    height: 78px;
+    border-bottom: 1px solid #616161;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 0;
+
+    .operation{
+        font-size: 17px;
+        color: #616161;
+    }
+
+    .result{
+        font-size: 30px;
+        color: #8746ff;
+    }
+}
+
+@media(min-width: 769px){
+    .history-card{
+
+        width: 150px;
+
+        text-align: center;
+
+        border: 0;
+
+        .operation{
+            font-size: 14px;
+        }
+
+        .result{
+            font-size: 20px;
+        }
+    }
+}

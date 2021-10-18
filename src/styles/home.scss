@@ -1,0 +1,22 @@
+main{
+    height: 85vh;
+    display: flex;
+    justify-content: center;
+
+    .container{
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        max-width: 1120px;
+        flex-direction: column;
+    }
+}
+
+@media(min-width: 769px){
+    main{
+        .container{
+            flex-direction: row;
+            gap:10px;
+        }
+    }
+}

@@ -21,11 +21,15 @@
     }
 
     .text-container{
+        width: 90vw;
+        height: 100%;
         display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
 
-        font-size: 64px;
+        font-size: 60px;
 
-    
         div{
             //disable text selection
             -moz-user-select: none;
@@ -34,6 +38,7 @@
             -ms-user-select: none;
             user-select: none;
 
+            height: 80px;
             min-width: 80px;
             
             display: flex;

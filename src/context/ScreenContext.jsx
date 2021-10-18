@@ -21,7 +21,6 @@ export function ScreenContextProvider(props) {
 
     //logical of key inputs
     function digitsInput(keyValue) {
-
         //clearLocalStorage()
 
         //functions

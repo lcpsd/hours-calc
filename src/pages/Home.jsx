@@ -1,6 +1,6 @@
 import '../styles/home.scss'
 
-//import { ShowHistoryButton } from '../components/ShowHistoryButton'
+import { ShowHistoryButton } from '../components/ShowHistoryButton'
 import { HistorySection } from '../components/HistorySection'
 import { CalculatorSection } from '../components/CalculatorSection'
 import { ScreenContextProvider } from '../context/ScreenContext'
@@ -14,7 +14,7 @@ export function Home() {
                 <KeyboardContextProvider>
                     <ScreenContextProvider>
                         <CalculatorSection/>
-                        {/* <ShowHistoryButton/> */}
+                        <ShowHistoryButton/>
                         <HistorySection/>
                     </ScreenContextProvider>
                 </KeyboardContextProvider>

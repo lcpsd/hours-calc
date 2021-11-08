@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import { useHistoryHook } from "../hooks/useHistoryHook";
 
 export const ScreenContext = createContext('')
 
@@ -19,9 +20,11 @@ export function ScreenContextProvider(props) {
 
     const [operatorNumber, setOperatorNumber] = useState(Number)
 
+    const {operations, setOperations} = useHistoryHook()
+
     //logical of key inputs
     function digitsInput(keyValue) {
-        //clearLocalStorage()
+        //clearOperations()
 
         //functions
         function setDigitOne(setPosition) {
@@ -91,52 +94,60 @@ export function ScreenContextProvider(props) {
         }
 
         //local storage functions
-        async function clearLocalStorage(){
-            await Promise.resolve(Object.entries(localStorage).map(([key, value]) => key.includes("@hours-calc/") ? localStorage.removeItem(key) : null
-            ))
+        async function clearOperations(){
+            setOperations([])
+            return
         }
 
-        async function localStorageLength(){
+        async function operationsLength(){
             
-            return Object.entries(localStorage).filter(([key, value]) => key.includes("@hours-calc/")).length
+            return operations.length
         }
 
-        async function getLocalStorage(){
-            return await Promise.resolve(
-                Object.entries(localStorage).filter(([key, value]) => key.includes("@hours-calc/"))
-            )
+        async function getOperations(){
+            return operations
         }
 
-        async function toLocalStorage(lastOperation, currentOperation, result){
+        async function toOperations(lastOperation, currentOperation, result){
             
-            if(await localStorageLength() === 10){
-                let tempArray = await getLocalStorage()
+            let id = 0
+
+            if(await operationsLength() === 10){
+                let tempArray = getOperations()
 
                 tempArray.sort((itemA, itemB) => {
-                    return (parseInt(itemA[0].split('@hours-calc/')[1]) - parseInt(itemB[0].split('@hours-calc/')[1]))
+                    return itemA.id - itemB.id
                 })
 
                 tempArray.pop()
                 
-                tempArray.map(item => item[0] = "@hours-calc/" + (parseInt(item[0].split('@hours-calc/')[1]) + 1))
+                tempArray.map(item => item.id += 1)
 
-                tempArray.unshift([`@hours-calc/${1}`, `${lastOperation},${currentOperation},${result}`])
+                tempArray.unshift()
                 
-                clearLocalStorage()
+                clearOperations()
 
-                tempArray.forEach(item => localStorage.setItem(item[0], item[1]))
+                setOperations({
+                    id,
+                    operator,
+                    lastOperation,
+                    currentOperation,
+                    result
+                })
 
                 return
             }
+            
+            if(await operationsLength() === 0) id = 1
+            if(await operationsLength() !== 0) id = await operationsLength() + 1
 
-            //OK
-            let id
-
-            if(await localStorageLength() === 0) id = 1
-            if(await localStorageLength() !== 0) id = await localStorageLength() + 1
-
-            localStorage.setItem(`@hours-calc/${id}`, `${lastOperation},${currentOperation},${result}`)
-
+            setOperations([...operations, {
+                id,
+                operator,
+                lastOperation,
+                currentOperation,
+                result
+            }])
         }
 
         //declarations
@@ -239,7 +250,7 @@ export function ScreenContextProvider(props) {
                 setPosition2(result[1])
                 setPosition3(result[2])
                 
-                toLocalStorage(lastOperation, secondQuery, `${result[0]}:${result[1]}:${result[2]}`)
+                toOperations(lastOperation, secondQuery, `${result[0]}:${result[1]}:${result[2]}`)
 
                 setLastOperation("")
 
@@ -269,7 +280,7 @@ export function ScreenContextProvider(props) {
                 setPosition2(result[1])
                 setPosition3(result[2])
 
-                toLocalStorage(lastOperation, secondQuery, `${result[0]}:${result[1]}:${result[2]}`)
+                toOperations(lastOperation, secondQuery, `${result[0]}:${result[1]}:${result[2]}`)
 
                 clearFields('operator')
                 setLastKey(keyValue)
@@ -307,7 +318,7 @@ export function ScreenContextProvider(props) {
                 setPosition2(result[1])
                 setPosition3(result[2])
 
-                toLocalStorage(lastOperation, secondQuery, `${result[0]}:${result[1]}:${result[2]}`)
+                toOperations(lastOperation, secondQuery, `${result[0]}:${result[1]}:${result[2]}`)
 
                 clearFields('operator')
 
@@ -352,7 +363,7 @@ export function ScreenContextProvider(props) {
                 setPosition2(result[1])
                 setPosition3(result[2])
 
-                toLocalStorage(lastOperation, secondQuery, `${result[0]}:${result[1]}:${result[2]}`)
+                toOperations(lastOperation, secondQuery, `${result[0]}:${result[1]}:${result[2]}`)
 
                 setLastOperation("")
 

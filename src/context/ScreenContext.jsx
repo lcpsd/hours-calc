@@ -24,8 +24,6 @@ export function ScreenContextProvider(props) {
 
     //logical of key inputs
     function digitsInput(keyValue) {
-        //clearOperations()
-
         //functions
         function setDigitOne(setPosition) {
             setPosition(keyValue)
@@ -93,26 +91,11 @@ export function ScreenContextProvider(props) {
                 splitedLastOperation[2])
         }
 
-        //local storage functions
-        async function clearOperations(){
-            setOperations([])
-            return
-        }
-
-        async function operationsLength(){
-            
-            return operations.length
-        }
-
-        async function getOperations(){
-            return operations
-        }
-
         async function toOperations(lastOperation, currentOperation, result){
             
             let id = 0
 
-            if(await operationsLength() === 10){
+            if(await operations.length === 10){
                 let tempArray = [...operations]
 
                 tempArray.pop()
@@ -134,8 +117,8 @@ export function ScreenContextProvider(props) {
                 return
             }
             
-            if(await operationsLength() === 0) id = 1
-            if(await operationsLength() !== 0) id = await operationsLength() + 1
+            if(await operations.length === 0) id = 1
+            if(await operations.length !== 0) id = await operations.length + 1
 
             let tempArray =[...operations]
             tempArray.unshift({

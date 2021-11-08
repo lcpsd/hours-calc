@@ -10,14 +10,14 @@
     align-items: stretch;
         
     width: 100vw;
-    height: 100vh;
+    height: 95vh;
     top:0;
     left: -100vw;
 
     transition: left 0.2s ease-in-out;
 
     &.visible{
-        left: 0vw;
+        left: 0;
     }
 
     #close-icon{

@@ -113,27 +113,23 @@ export function ScreenContextProvider(props) {
             let id = 0
 
             if(await operationsLength() === 10){
-                let tempArray = getOperations()
-
-                tempArray.sort((itemA, itemB) => {
-                    return itemA.id - itemB.id
-                })
+                let tempArray = [...operations]
 
                 tempArray.pop()
-                
-                tempArray.map(item => item.id += 1)
 
-                tempArray.unshift()
-                
-                clearOperations()
+                tempArray.forEach(item => item.id +=1)
 
-                setOperations({
-                    id,
-                    operator,
-                    lastOperation,
-                    currentOperation,
-                    result
-                })
+                tempArray.unshift(
+                    {
+                        id,
+                        operator,
+                        lastOperation,
+                        currentOperation,
+                        result
+                    }
+                )
+                
+                setOperations(tempArray)
 
                 return
             }
@@ -141,13 +137,16 @@ export function ScreenContextProvider(props) {
             if(await operationsLength() === 0) id = 1
             if(await operationsLength() !== 0) id = await operationsLength() + 1
 
-            setOperations([...operations, {
+            let tempArray =[...operations]
+            tempArray.unshift({
                 id,
                 operator,
                 lastOperation,
                 currentOperation,
                 result
-            }])
+            })
+
+            setOperations(tempArray)
         }
 
         //declarations

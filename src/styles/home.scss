@@ -1,5 +1,5 @@
 main{
-    height: 85vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
     overflow-x: hidden;
@@ -15,6 +15,7 @@ main{
 
 @media(min-width: 769px){
     main{
+        height: 85vh;
         .container{
             flex-direction: row;
             gap:10px;

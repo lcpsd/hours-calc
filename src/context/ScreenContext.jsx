@@ -340,11 +340,11 @@ export function ScreenContextProvider(props) {
 
                 result = secondsToHHMMSS(lastOperationToSeconds("-") - hoursFormatToSeconds(position1, position2, position3))
 
-                if(result[0].split("-")){
+                if(result[0].split("-").length > 1 ){
                     result[0] = result[0].split("-")
                     result[0] = "-" + result[0][1]
                 }
-
+                
                 setPosition1(result[0])
                 setPosition2(result[1])
                 setPosition3(result[2])

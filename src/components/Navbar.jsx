@@ -1,5 +1,5 @@
-import logo from '../public/logo.png'
-import githubLogo from '../public/github-logo.png'
+import logo from '../assets/logo.png'
+import githubLogo from '../assets/github-logo.png'
 import '../styles/navbar.scss'
 
 export function Navbar() {

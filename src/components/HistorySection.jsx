@@ -1,5 +1,5 @@
 import {HistoryCard} from './HistoryCard'
-import closeIcon from '../public/close.png'
+import closeIcon from '../assets/close.png'
 import '../styles/historySection.scss'
 import {useHistoryHook} from '../hooks/useHistoryHook'
 

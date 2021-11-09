@@ -1,5 +1,5 @@
 import { useHistoryHook } from '../hooks/useHistoryHook'
-import history from '../public/history.png'
+import history from '../assets/history.png'
 import '../styles/showHistoryButton.scss'
 
 export function ShowHistoryButton() {

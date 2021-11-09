@@ -29,6 +29,32 @@ nav{
             }
         }
 
+        #contact-button{
+            
+            button{
+                border: 0;
+                background: #3d3d3d;
+                border-radius: 5px;
+                padding: 5px 10px;
+
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                color: #fff;
+                font-weight: bold;
+
+                cursor: pointer;
+
+                &:hover{
+                    background: #222222;
+                }
+            }
+
+            img{
+                height: 20px;
+            }
+        }
+
         #creator-section{
 
             a{

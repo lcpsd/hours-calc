@@ -116,6 +116,11 @@
 
 @media(min-width: 769px){
     .keyboard-key{
+
+        &.AC{
+            border-radius: 0 10px 0 0;
+        }
+
         &.addition{
             border-radius: 0 0 10px 0;
         }

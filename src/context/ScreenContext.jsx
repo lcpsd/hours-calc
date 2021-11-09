@@ -346,7 +346,6 @@ export function ScreenContextProvider(props) {
                     result[0] = "-" + result[0][1]
                 }
 
-
                 setPosition1(result[0])
                 setPosition2(result[1])
                 setPosition3(result[2])

@@ -32,8 +32,7 @@ export function ScreenContextProvider(props) {
 
         function setDigitTwo(setPosition, position) {
             setPosition(position + keyValue)
-            positionCounter >= 3 || position1.length >= 3 &&
-            setPositionCounter(positionCounter + 1)
+            if(positionCounter >= 3 || position1.length >= 4)setPositionCounter(positionCounter + 1)
         }
 
         function clearFields(option) {

@@ -31,8 +31,8 @@ export function ScreenContextProvider(props) {
         }
 
         function setDigitTwo(setPosition, position) {
-            let ten = position + keyValue
-            setPosition(ten)
+            setPosition(position + keyValue)
+            positionCounter >= 3 || position1.length >= 3 &&
             setPositionCounter(positionCounter + 1)
         }
 
@@ -155,7 +155,7 @@ export function ScreenContextProvider(props) {
                     setDigitOne(setPosition1)
                     break;
                 case 2:
-                    setDigitTwo(setPosition1, position1)
+                    position1.length < 4 && setDigitTwo(setPosition1, position1)
                     break;
                 case 3:
                     setDigitOne(setPosition2)

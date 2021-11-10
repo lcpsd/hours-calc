@@ -1,6 +1,11 @@
 import '../styles/historyCard.scss'
 
-export function HistoryCard({operation, result}) {
+interface HistoryCardProps {
+    operation: string
+    result: string
+}
+
+export function HistoryCard({operation, result}:HistoryCardProps) {
     
     return (
         <div className="history-card">

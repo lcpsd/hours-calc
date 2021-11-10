@@ -7,6 +7,7 @@ import { ClockLoader } from 'react-spinners';
 import { useEffect, useState } from 'react';
 
 export default function App() {
+  
   const [isLoading, setLoading] = useState(true)
 
   useEffect(() => {

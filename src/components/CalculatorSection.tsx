@@ -1,5 +1,5 @@
-import { Screen } from '../components/Screen'
-import {KeyboardSection} from '../components/KeyboardSection'
+import { Screen } from './Screen'
+import {KeyboardSection} from './KeyboardSection'
 import '../styles/calculatorSection.scss'
 
 export function CalculatorSection() {
